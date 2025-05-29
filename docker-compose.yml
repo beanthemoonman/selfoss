@@ -13,19 +13,10 @@ services:
     environment:
       - TZ=UTC
 
-  # Optional MySQL database service
-  # Uncomment if you want to use MySQL instead of SQLite
-  # db:
-  #   image: mysql:8.0
-  #   volumes:
-  #     - mysql_data:/var/lib/mysql
-  #   restart: unless-stopped
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: rootpassword
-  #     MYSQL_DATABASE: selfoss
-  #     MYSQL_USER: selfoss
-  #     MYSQL_PASSWORD: selfosspassword
-
 volumes:
   selfoss_data:
-  # mysql_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /usr/share/webapps/selfoss/data/sqlite
